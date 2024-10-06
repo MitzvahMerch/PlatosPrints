@@ -17,7 +17,7 @@ header {
     width: 100%;
     box-sizing: border-box; /* Include padding within the element's width */
     margin: 0; /* Ensure there's no margin */
-    border-bottom: 2px solid black; /* Added 2px black border at the bottom */
+    border-bottom: 2px solid white; /* Added 2px black border at the bottom */
     color: #D47F42; /* Set text color to D47F42 */
 }
 
