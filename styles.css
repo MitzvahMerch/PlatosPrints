@@ -46,6 +46,12 @@ header {
     height: 80px; /* Ensure consistent height */
     margin-left: 0px; /* Reduced spacing between the MM logo and navigation */
 }
+.nav-text {
+    font-weight: bold;
+    font-size: 24px;
+    color: #D47F42; /* Match the header text color */
+    padding: 0 20px; /* Add padding to space it out */
+}
 
 .nav-links {
     list-style: none;
