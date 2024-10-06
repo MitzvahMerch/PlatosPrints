@@ -48,7 +48,7 @@ header {
 }
 .nav-text {
     font-weight: bold;
-    font-size: 24px;
+    font-size: 28px; /* Adjust the size as needed */
     color: #D47F42; /* Match the header text color */
     padding: 0 20px; /* Add padding to space it out */
 }
@@ -60,6 +60,7 @@ header {
     display: flex;
     gap: 40px; /* Reduced gap to bring navigation links closer together */
     justify-content: center;
+    text-decoration: underline;
 }
 
 .nav-links li {
