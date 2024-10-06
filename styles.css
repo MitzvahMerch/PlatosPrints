@@ -48,7 +48,7 @@ header {
 }
 .nav-text {
     font-weight: bold;
-    font-size: 32px; /* Adjust the size as needed */
+    font-size: 36px; /* Adjust the size as needed */
     color: #D47F42; /* Match the header text color */
     padding: 0 20px; /* Add padding to space it out */
     text-decoration: none;
@@ -68,7 +68,6 @@ header {
 }
 
 .nav-links a {
-    text-decoration: underline;
     font-weight: bold;
     color: #fff;
     font-size: 24px;
