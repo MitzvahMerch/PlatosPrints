@@ -37,7 +37,7 @@
         .modern-button {
             background-color: #D47F42; /* Updated button color */
             border: none;
-            color: white;
+            color: black; /* Updated text color to black */
             font-size: 26px; /* 30% larger than original size */
             font-weight: 600;
             padding: 20px 52px; /* 30% larger than original padding */
@@ -65,22 +65,22 @@
             top: 70%;
         }
 
-.countdown-timer {
-    background: #000;
-    color: #D47F42;
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-    margin-left: 20px;
-    min-width: 350px;
-    min-height: 300px;
-    position: absolute;
-    top: 55%;
-    left: 10%;
-    transform: translateY(-50%);
-    overflow: hidden;
-    border: 2px solid #fff; /* Added white border */
-}
+        .countdown-timer {
+            background: #000;
+            color: #D47F42;
+            font-size: 26px;
+            font-weight: bold;
+            text-align: center;
+            margin-left: 20px;
+            min-width: 350px;
+            min-height: 300px;
+            position: absolute;
+            top: 55%;
+            left: 10%;
+            transform: translateY(-50%);
+            overflow: hidden;
+            border: 2px solid #fff; /* Added white border */
+        }
 
         .timer {
             font-size: 35px; /* 20% larger */
@@ -317,7 +317,7 @@
                 // Set receive-by date using custom turnaround logic
                 const turnaroundDays = calculateTurnaroundDays(now);
                 const receiveBy = new Date(target);
-                receiveBy.setDate(receiveBy.getDate() + turnaroundDays);
+                receiveBy.setDate(receiveBy.getDate() + turnaroundDays - 1); // Subtract 1 day from the turnaround time
                 document.getElementById('month').innerText = String(receiveBy.getMonth() + 1).padStart(2, '0');
                 document.getElementById('day').innerText = String(receiveBy.getDate()).padStart(2, '0');
                 document.getElementById('year').innerText = String(receiveBy.getFullYear()).slice(-2);
