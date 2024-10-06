@@ -67,10 +67,7 @@
 
         /* Countdown Timer Styling */
         .countdown-timer {
-            background: #ffdf00;
-            padding: 20px;
-            border-radius: 10px;
-            color: #000;
+            color: #D47F42
             font-size: 26px;
             font-weight: bold;
             text-align: center;
@@ -317,6 +314,14 @@
 
                 document.getElementById('countdown').innerText = `${hours}h ${minutes}m ${seconds}s`;
 
+                // Set receive-by date using custom turnaround logic
+                const turnaroundDays = calculateTurnaroundDays(now);
+                const receiveBy = new Date(target);
+                receiveBy.setDate(receiveBy.getDate() + turnaroundDays);
+                document.getElementById('month').innerText = String(receiveBy.getMonth() + 1).padStart(2, '0');
+                document.getElementById('day').innerText = String(receiveBy.getDate()).padStart(2, '0');
+                document.getElementById('year').innerText = String(receiveBy.getFullYear()).slice(-2);
+
                 if (diff <= 0) {
                     clearInterval(timerInterval);
                     document.getElementById('countdown').innerText = "Time's up!";
@@ -324,6 +329,23 @@
             }
 
             const timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function calculateTurnaroundDays(now) {
+            const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+            const hour = now.getHours();
+
+            let turnaroundDays = 14; // Base turnaround time
+
+            if (day === 4 && hour >= 19) { // Thursday after 7 PM
+                turnaroundDays += 3; // Add 3 days to the turnaround time (Thursday night -> Sunday night)
+            } else if (day === 5) { // Friday
+                turnaroundDays += 2; // Add 2 days (Friday -> Sunday night)
+            } else if (day === 6) { // Saturday
+                turnaroundDays += 1; // Add 1 day (Saturday -> Sunday night)
+            }
+
+            return turnaroundDays;
         }
 
         initializeCountdown();
