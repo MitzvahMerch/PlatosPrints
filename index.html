@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Head Content -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
@@ -49,6 +50,7 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%); /* Center buttons horizontally */
+            height: auto; /* Allow the button to expand vertically */
         }
 
         .modern-button:hover {
@@ -63,6 +65,11 @@
 
         #request-design-button {
             top: 70%;
+        }
+
+        /* Shift the Request Design button down when image is displayed */
+        #request-design-button.shifted {
+            top: 85%; /* Adjust as needed */
         }
 
         .countdown-timer {
@@ -152,45 +159,13 @@
             font-size: 30px;
         }
 
-        .image-upload-container {
-            display: none;
-            margin-top: 20px;
-            text-align: center;
-            position: absolute;
-            top: 45%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #FFDF00;
-            padding: 20px;
-            border: 2px solid black;
-            border-radius: 8px;
-            z-index: 2;
-        }
-
-        .image-upload-container input {
-            display: none;
-        }
-
-        .image-upload-container label {
-            background-color: #FFDF00;
-            color: black;
-            font-weight: bold;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 24px;
-            cursor: pointer;
-            display: inline-block;
-            text-align: center;
-        }
-
+        /* Image display within the button */
         .image-display-container {
             margin-top: 20px;
             background-color: #d3d3d3;
             padding: 10px;
             border-radius: 5px;
             display: none;
-            position: relative;
         }
 
         .image-display-container img {
@@ -205,18 +180,6 @@
             text-decoration: underline;
         }
 
-        #submitButton {
-            display: none;
-            margin-top: 20px;
-            background-color: black;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 24px;
-            cursor: pointer;
-            width: 100%;
-        }
     </style>
 </head>
 <body>
@@ -255,24 +218,22 @@
             <div>Designs within 2 days</div>
         </div>
 
-        <!-- Top button positioned about 70% up -->
-        <a href="RequestDesign.html" target="_blank" rel="noopener noreferrer">
-            <button class="modern-button" id="request-design-button">Request Design</button>
-        </a>
-        
-        <!-- Bottom button positioned about 30% up -->
-        <button class="modern-button" id="submit-design-button">Submit Design</button>
-
-        <!-- Image Upload Container for Submit Design Button -->
-        <div class="image-upload-container" id="imageUploadContainer">
-            <input type="file" id="fileInput">
-            <label for="fileInput">Upload Logo</label>
+        <!-- Submit Design Button -->
+        <button class="modern-button" id="submit-design-button">
+            Submit Design
+            <!-- Hidden file input -->
+            <input type="file" id="fileInput" style="display: none;">
+            <!-- Image display within the button -->
             <div class="image-display-container" id="imageDisplayContainer">
                 <img id="fileDisplay" alt="Uploaded Logo">
                 <div class="discard-text" id="discardText">Discard</div>
             </div>
-            <button id="submitButton">Submit</button>
-        </div>
+        </button>
+
+        <!-- Request Design Button -->
+        <a href="RequestDesign.html" target="_blank" rel="noopener noreferrer">
+            <button class="modern-button" id="request-design-button">Request Design</button>
+        </a>
     </div>
 
     <!-- Placeholder for footer -->
@@ -366,7 +327,7 @@
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                document.getElementById('countdown').innerText = ${hours}h ${minutes}m ${seconds}s;
+                document.getElementById('countdown').innerText = `${hours}h ${minutes}m ${seconds}s`;
 
                 // Set receive-by date using custom turnaround logic
                 const turnaroundDays = calculateTurnaroundDays(now);
@@ -405,36 +366,41 @@
         initializeCountdown();
 
         // Submit Design Button Functionality
-        document.getElementById('submit-design-button').addEventListener('click', function() {
-    document.getElementById('fileInput').click();
-});
+        const submitDesignButton = document.getElementById('submit-design-button');
+        const fileInput = document.getElementById('fileInput');
+        const fileDisplay = document.getElementById('fileDisplay');
+        const imageDisplayContainer = document.getElementById('imageDisplayContainer');
+        const discardText = document.getElementById('discardText');
+        const requestDesignButton = document.getElementById('request-design-button');
 
-        document.getElementById('fileInput').addEventListener('change', function(event) {
+        submitDesignButton.addEventListener('click', function(event) {
+            // Prevent default button action
+            event.preventDefault();
+            // Trigger file input click
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (file) {
-                const fileDisplay = document.getElementById('fileDisplay');
-                const imageDisplayContainer = document.getElementById('imageDisplayContainer');
-                const submitButton = document.getElementById('submitButton');
-
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     fileDisplay.src = e.target.result;
                     imageDisplayContainer.style.display = 'block';
-                    submitButton.style.display = 'block';
+                    // Adjust the position of the Request Design button
+                    requestDesignButton.classList.add('shifted');
                 };
                 reader.readAsDataURL(file);
             }
         });
 
-        document.getElementById('discardText').addEventListener('click', function() {
-            const fileInput = document.getElementById('fileInput');
-            const imageDisplayContainer = document.getElementById('imageDisplayContainer');
-            const submitButton = document.getElementById('submitButton');
-
+        discardText.addEventListener('click', function() {
             fileInput.value = '';
             imageDisplayContainer.style.display = 'none';
-            submitButton.style.display = 'none';
+            // Reset the position of the Request Design button
+            requestDesignButton.classList.remove('shifted');
         });
     </script>    
 </body>
 </html>
+
