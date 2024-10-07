@@ -152,73 +152,70 @@
             font-size: 30px;
         }
 
-        /* Confetti Styling */
-        .confetti {
+        .image-upload-container {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
             position: absolute;
-            top: -50px;
-            width: 10px;
-            height: 10px;
-            background-color: #fff;
-            opacity: 0.9;
-            z-index: 1;
-            animation: confetti-fall 3s linear infinite;
-            pointer-events: none;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FFDF00;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 8px;
+            z-index: 2;
         }
 
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(0) rotate(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(500px) rotate(720deg);
-                opacity: 0;
-            }
+        .image-upload-container input {
+            display: none;
         }
 
-        .confetti:nth-child(2n) {
-            background-color: #ff0000;
-            animation-duration: 2.5s;
+        .image-upload-container label {
+            background-color: #FFDF00;
+            color: black;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 24px;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
         }
 
-        .confetti:nth-child(3n) {
-            background-color: #00ff00;
-            animation-duration: 4s;
+        .image-display-container {
+            margin-top: 20px;
+            background-color: #d3d3d3;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            position: relative;
         }
 
-        .confetti:nth-child(4n) {
-            background-color: #0000ff;
-            animation-duration: 3.5s;
+        .image-display-container img {
+            max-width: 100%;
         }
 
-        .confetti:nth-child(5n) {
-            background-color: #ffff00;
-            animation-duration: 2.8s;
+        .discard-text {
+            margin-top: 10px;
+            font-size: 14px;
+            color: red;
+            cursor: pointer;
+            text-decoration: underline;
         }
 
-        .confetti:nth-child(6n) {
-            background-color: #ff00ff;
-            animation-duration: 3.2s;
-        }
-
-        .confetti:nth-child(7n) {
-            background-color: #00ffff;
-            animation-duration: 3.6s;
-        }
-
-        .confetti:nth-child(8n) {
-            background-color: #ff8000;
-            animation-duration: 3s;
-        }
-
-        .confetti:nth-child(9n) {
-            background-color: #8000ff;
-            animation-duration: 3.4s;
-        }
-
-        .confetti:nth-child(10n) {
-            background-color: #008000;
-            animation-duration: 2.7s;
+        #submitButton {
+            display: none;
+            margin-top: 20px;
+            background-color: black;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 24px;
+            cursor: pointer;
+            width: 100%;
         }
     </style>
 </head>
@@ -264,9 +261,18 @@
         </a>
         
         <!-- Bottom button positioned about 30% up -->
-        <a href="SubmitDesign.html" target="_blank" rel="noopener noreferrer">
-            <button class="modern-button" id="submit-design-button">Submit Design</button>
-        </a>
+        <button class="modern-button" id="submit-design-button">Submit Design</button>
+
+        <!-- Image Upload Container for Submit Design Button -->
+        <div class="image-upload-container" id="imageUploadContainer">
+            <input type="file" id="fileInput">
+            <label for="fileInput">Upload Logo</label>
+            <div class="image-display-container" id="imageDisplayContainer">
+                <img id="fileDisplay" alt="Uploaded Logo">
+                <div class="discard-text" id="discardText">Discard</div>
+            </div>
+            <button id="submitButton">Submit</button>
+        </div>
     </div>
 
     <!-- Placeholder for footer -->
@@ -397,6 +403,39 @@
         }
 
         initializeCountdown();
+
+        // Submit Design Button Functionality
+        document.getElementById('submit-design-button').addEventListener('click', function() {
+            const imageUploadContainer = document.getElementById('imageUploadContainer');
+            imageUploadContainer.style.display = 'block';
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const fileDisplay = document.getElementById('fileDisplay');
+                const imageDisplayContainer = document.getElementById('imageDisplayContainer');
+                const submitButton = document.getElementById('submitButton');
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    fileDisplay.src = e.target.result;
+                    imageDisplayContainer.style.display = 'block';
+                    submitButton.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('discardText').addEventListener('click', function() {
+            const fileInput = document.getElementById('fileInput');
+            const imageDisplayContainer = document.getElementById('imageDisplayContainer');
+            const submitButton = document.getElementById('submitButton');
+
+            fileInput.value = '';
+            imageDisplayContainer.style.display = 'none';
+            submitButton.style.display = 'none';
+        });
     </script>    
 </body>
 </html>
