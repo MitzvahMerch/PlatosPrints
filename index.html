@@ -406,9 +406,8 @@
 
         // Submit Design Button Functionality
         document.getElementById('submit-design-button').addEventListener('click', function() {
-            const imageUploadContainer = document.getElementById('imageUploadContainer');
-            imageUploadContainer.style.display = 'block';
-        });
+    document.getElementById('fileInput').click();
+});
 
         document.getElementById('fileInput').addEventListener('change', function(event) {
             const file = event.target.files[0];
