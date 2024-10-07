@@ -51,6 +51,7 @@
             left: 50%;
             transform: translateX(-50%); /* Center buttons horizontally */
             height: auto; /* Allow the button to expand vertically */
+            overflow: hidden; /* Hide overflow if needed */
         }
 
         .modern-button:hover {
@@ -166,6 +167,7 @@
             padding: 10px;
             border-radius: 5px;
             display: none;
+            position: relative;
         }
 
         .image-display-container img {
@@ -211,7 +213,7 @@
             <div class="confetti" style="left: 95%;"></div>
         </div>
 
-        <!-- Info Box Positioned to the right of the buttons -->
+        <!-- Info Box -->
         <div class="info-box">
             <div>Better Pricing than Fresh Prints</div>
             <div>No Order Minimums</div>
@@ -221,14 +223,15 @@
         <!-- Submit Design Button -->
         <button class="modern-button" id="submit-design-button">
             Submit Design
-            <!-- Hidden file input -->
-            <input type="file" id="fileInput" style="display: none;">
             <!-- Image display within the button -->
             <div class="image-display-container" id="imageDisplayContainer">
                 <img id="fileDisplay" alt="Uploaded Logo">
                 <div class="discard-text" id="discardText">Discard</div>
             </div>
         </button>
+
+        <!-- Hidden file input -->
+        <input type="file" id="fileInput" style="display: none;">
 
         <!-- Request Design Button -->
         <a href="RequestDesign.html" target="_blank" rel="noopener noreferrer">
@@ -403,4 +406,5 @@
     </script>    
 </body>
 </html>
+
 
