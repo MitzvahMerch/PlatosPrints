@@ -136,8 +136,20 @@
             padding: 40px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            line-height: 2;
+            justify-content: center;
+            gap: 20px; /* Add spacing between lines */
+        }
+
+        .info-box div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box div:before {
+            content: "\2713";
+            color: #D47F42;
+            font-size: 30px;
         }
 
         /* Confetti Styling */
@@ -241,11 +253,9 @@
 
         <!-- Info Box Positioned to the right of the buttons -->
         <div class="info-box">
-            <div>
-                Better Pricing than Fresh Prints<br>
-                No Order Minimums<br>
-                Designs within 2 days
-            </div>
+            <div>Better Pricing than Fresh Prints</div>
+            <div>No Order Minimums</div>
+            <div>Designs within 2 days</div>
         </div>
 
         <!-- Top button positioned about 70% up -->
