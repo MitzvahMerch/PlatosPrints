@@ -52,7 +52,7 @@ header {
     color: #D47F42; /* Match the header text color */
     padding: 0 20px; /* Add padding to space it out */
     text-decoration: none;
-    transform: translateY(-20px); /* Adjust the value as needed to move it higher */
+    margin-top: -10px; /* Adjust the value to move it up */
 }
 
 .nav-links {
@@ -62,7 +62,7 @@ header {
     display: flex;
     gap: 40px; /* Reduced gap to bring navigation links closer together */
     justify-content: center;
-    transform: translateY(20px); /* Adjust the value as needed to move it down */
+    margin-top: 10px; /* Adjust the value to move them down */
 }
 
 .nav-links li {
