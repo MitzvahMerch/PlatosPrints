@@ -52,17 +52,15 @@ header {
     color: #D47F42; /* Match the header text color */
     padding: 0 20px; /* Add padding to space it out */
     text-decoration: none;
-    margin-top: -10px; /* Adjust the value to move it up */
 }
 
 .nav-links {
     list-style: none;
-    padding: 0;
+    padding: 10px 0 0 0; /* Adds padding at the top to move them down */
     margin: 0;
     display: flex;
     gap: 40px; /* Reduced gap to bring navigation links closer together */
     justify-content: center;
-    margin-top: 10px; /* Adjust the value to move them down */
 }
 
 .nav-links li {
