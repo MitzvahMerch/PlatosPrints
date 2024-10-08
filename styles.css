@@ -61,6 +61,7 @@ header {
     display: flex;
     gap: 40px; /* Reduced gap to bring navigation links closer together */
     justify-content: center;
+    transform: translateY(10px); /* Adjust the value as needed to move it down */
 }
 
 .nav-links li {
