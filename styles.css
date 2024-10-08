@@ -56,7 +56,7 @@ header {
 
 .nav-links {
     list-style: none;
-    padding: 10px 0 0 0; /* Adds padding at the top to move them down */
+    padding: 20px 0 0 0; /* Adds padding at the top to move them down */
     margin: 0;
     display: flex;
     gap: 40px; /* Reduced gap to bring navigation links closer together */
